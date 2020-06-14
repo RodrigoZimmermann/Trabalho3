@@ -28,9 +28,14 @@
         <div class="w3-bar w3-purple w3-card">
             <a id="branco1" class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
                     class="fa fa-bars"></i></a>
-            <a id="branco2" href="#novoEmpregado" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Cadastro Funcionário</a>
-            <a id="branco3" href="#tabela" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Tabela de Funcionário</a>
-            <a id="branco4" href="#edicao" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Edição de Funcinário</a>
+            <a id="branco2" href="#novoEmpregado" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Cadastro
+                Funcionário</a>
+            <a id="branco3" href="#tabela" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Tabela de
+                Funcionário</a>
+            <a id="branco4" href="#edicao" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Edição de
+                Funcionário</a>
+            <a id="branco10" href="#exclusao" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Excluir
+                Funcionário</a>
             <a id="branco5" href="#contato" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Contato</a>
         </div>
     </div>
@@ -38,8 +43,12 @@
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-purple w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
         <a id="branco6" href="#novoEmpregado" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Cadastro Funcionário</a>
-        <a id="branco7" href="#tabela" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Tabela de Funcionário</a>
-        <a id="branco8" href="#edicao" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Edição de Funcinário</a>
+        <a id="branco7" href="#tabela" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Tabela de
+            Funcionário</a>
+        <a id="branco8" href="#edicao" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Edição de
+            Funcionário</a>
+        <a id="branco11" href="#exclusao" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Excluir
+            Funcionário</a>
         <a id="branco9" href="#contato" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Contato</a>
     </div>
 
@@ -58,7 +67,7 @@
                 </div>
                 <div class="w3-container w3-margin">
                     <label>Salário:</label>
-                    <input class="w3-input w3-light-grey  w3-border" type="text" placeholder="0,00">
+                    <input class="w3-input w3-light-grey  w3-border" type="text" placeholder="0,00" id="salary">
                 </div>
                 <div class="w3-container w3-margin">
                     <label>Idade:</label>
@@ -66,7 +75,7 @@
                 </div>
                 <div class="w3-container w3-margin">
                     <label>Avatar:</label>
-                    <input class="w3-input w3-light-grey w3-border" type="text" placeholder="http://url.do.avatar">
+                    <input class="w3-input w3-light-grey w3-border" type="text" placeholder="http://url.do.avatar" id="avatar">
                 </div>
                 <button id="salvar" type="submit" class="w3-btn w3-blue w3-border w3-text-black">Salvar</button>
                 <button class="w3-btn w3-blue w3-border w3-text-black" id="cancelar">Cancelar</button>
@@ -87,24 +96,43 @@
                 <div class="w3-container">
                     <h2>Edição Funcionário</h2>
                 </div>
-
+                <div class="w3-container w3-margin">
+                    <label>ID:</label>
+                    <input class="w3-input w3-light-grey w3-border" type="text" id="idEdicao" name="name">
+                </div>
                 <div class="w3-container w3-margin">
                     <label>Nome Completo:</label>
-                    <input class="w3-input w3-light-grey w3-border" type="text" id="name" name="name">
+                    <input class="w3-input w3-light-grey w3-border" type="text" id="nomeEdicao" name="name">
                 </div>
                 <div class="w3-container w3-margin">
                     <label>Salário:</label>
-                    <input class="w3-input w3-light-grey  w3-border" type="text" placeholder="0,00">
+                    <input class="w3-input w3-light-grey  w3-border" type="text" placeholder="0,00" id="salarioEdicao">
                 </div>
                 <div class="w3-container w3-margin">
                     <label>Idade:</label>
-                    <input class="w3-input w3-light-grey w3-border" type="number" id="number" name="number">
+                    <input class="w3-input w3-light-grey w3-border" type="number" id="idadeEdicao" name="number">
                 </div>
                 <div class="w3-container w3-margin">
                     <label>Avatar:</label>
-                    <input class="w3-input w3-light-grey w3-border" type="text" placeholder="http://url.do.avatar">
+                    <input class="w3-input w3-light-grey w3-border" type="text" placeholder="http://url.do.avatar" id="avatarEdicao">
                 </div>
-                <button id="salvar" type="submit" class="w3-btn w3-blue w3-border w3-text-black">Salvar</button>
+                <button id="editar" type="submit" class="w3-btn w3-blue w3-border w3-text-black">Editar</button>
+                <button class="w3-btn w3-blue w3-border w3-text-black" id="cancelar">Cancelar</button>
+            </form>
+        </div>
+
+        <!-- Excluir Empregado -->
+        <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="exclusao">
+            <form id="form">
+                <div class="w3-container">
+                    <h2>Excluir Funcionário</h2>
+                </div>
+
+                <div class="w3-container w3-margin">
+                    <label>ID:</label>
+                    <input class="w3-input w3-light-grey w3-border" type="text" id="excluirFuncionario" name="excluirFuncionario">
+                </div>
+                <button id="excluir" type="submit" class="w3-btn w3-blue w3-border w3-text-black">Excluir</button>
                 <button class="w3-btn w3-blue w3-border w3-text-black" id="cancelar">Cancelar</button>
             </form>
         </div>

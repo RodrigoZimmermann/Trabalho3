@@ -12,7 +12,6 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4) {
         if (this.status == 200) {
-            //tratar API
             var objetoRetornado = JSON.parse(this.responseText);
             $("#listaDeConteudo").append("<tr>");
             $("#listaDeConteudo").append("<td>" + "id" + "</td>");
@@ -20,8 +19,6 @@ xhttp.onreadystatechange = function() {
             $("#listaDeConteudo").append("<td>" + "Salário" + "</td>");
             $("#listaDeConteudo").append("<td>" + "Idade" + "</td>");
             $("#listaDeConteudo").append("<td>" + "Avatar" + "</td>");
-            $("#listaDeConteudo").append("<td>" + "Editar" + "</td>");
-            $("#listaDeConteudo").append("<td>" + "Excluir" + "</td>");
             $("#listaDeConteudo").append("<tr>");
 
             for (var i = 0; i < objetoRetornado.data.length; i++) {
@@ -32,34 +29,92 @@ xhttp.onreadystatechange = function() {
                 $("#listaDeConteudo").append("<td>" + popula.employee_salary + "</td>");
                 $("#listaDeConteudo").append("<td>" + popula.employee_age + "</td>");
                 $("#listaDeConteudo").append("<td>" + popula.profile_image + "</td>");
-                $("#listaDeConteudo").append("<td>" + "<a href=" + "#editar" + ">Editar</a>" + "</td>");
-                $("#listaDeConteudo").append("<td>" + "<a href=" + "#excluir" + ">Excluir</a>" + "</td>");
                 $("#listaDeConteudo").append("<tr>");
 
                 $("td").css("background-color", "white");
                 $("td").css("border", "3px solid black");
                 $("td").css("font-weight", "bold");
                 $("td").css("color", "black");
-                $("a").css("color", "blue");
-                $("#branco1").css("color", "white");
-                $("#branco2").css("color", "white");
-                $("#branco3").css("color", "white");
-                $("#branco4").css("color", "white");
-                $("#branco5").css("color", "white");
-                $("#branco6").css("color", "white");
-                $("#branco7").css("color", "white");
-                $("#branco8").css("color", "white");
-                $("#branco9").css("color", "white");
-                // $('#listaDeConteudo td').click(function() {
-                //     alert($(this).html());
-                //  });
-
             }
             objetoRetornado.data
         } else {
 
         }
     }
-};
-xhttp.open("GET", "http://dummy.restapiexample.com/api/v1/employees", true)
+}
+xhttp.open("GET", "https://us-central1-rest-api-employees.cloudfunctions.net/api/v1/employees", true)
 xhttp.send();
+
+
+
+$("#salvar").click(function() {
+    var xhttp = new XMLHttpRequest();
+
+    var novoEmpregado = {
+        name: document.getElementById("name").value,
+        salary: document.getElementById("salary").value,
+        age: document.getElementById("number").value
+
+    };
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                var objetoRetornado = JSON.parse(this.responseText);
+                var nome = objetoRetornado.data.name;
+                alert("Empregado " + nome + " cadastrado com sucesso")
+            } else {
+
+            }
+        }
+    }
+    xhttp.open("POST", "https://us-central1-rest-api-employees.cloudfunctions.net/api/v1/create", true);
+    xhttp.setRequestHeader('Content-type', 'application/json');
+    xhttp.send(JSON.stringify(novoEmpregado));
+});
+
+
+$("#excluir").click(function() {
+    var xhttp = new XMLHttpRequest();
+    var deletaEmpregado = {
+        id: document.getElementById("excluirFuncionario").value,
+    };
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                var objetoRetornado = JSON.parse(this.responseText);
+                var nome = objetoRetornado.data.name;
+                alert("Empregado " + nome + " removido com sucesso")
+            }
+        }
+    }
+    xhttp.open("DELETE", "https://us-central1-rest-api-employees.cloudfunctions.net/api/v1/delete/2", true)
+    xhttp.setRequestHeader('Content-type', 'application/json');
+    xhttp.send(JSON.stringify(deletaEmpregado));
+});
+
+$("#cancelar").click(function() {
+    document.getElementById('form').reset();
+});
+
+
+$("#editar").click(function() {
+    var xhttp = new XMLHttpRequest();
+    var editarEmpregado = {
+        id: document.getElementById("idEdicao").value,
+        name: document.getElementById("nomeEdicao").value,
+        salary: document.getElementById("salarioEdicao").value,
+        age: document.getElementById("idadeEdicao").value
+    };
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                var objetoRetornado = JSON.parse(this.responseText);
+                var id = objetoRetornado.data.id;
+                alert("Empregado com número de id " + id + " modificado")
+            }
+        }
+    }
+    xhttp.open("PUT", "https://us-central1-rest-api-employees.cloudfunctions.net/api/v1/update/21", true)
+    xhttp.setRequestHeader('Content-type', 'application/json');
+    xhttp.send(JSON.stringify(editarEmpregado));
+});
