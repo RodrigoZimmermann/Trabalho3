@@ -43,7 +43,7 @@ xhttp.onreadystatechange = function() {
 }
 xhttp.open("GET", "http://rest-api-employees.jmborges.site/api/v1/employees", true);
 xhttp.setRequestHeader('Content-type', 'application/json');
-xhttp.send();
+//xhttp.send();
 
 
 
