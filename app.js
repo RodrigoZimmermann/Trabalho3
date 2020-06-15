@@ -36,13 +36,12 @@ xhttp.onreadystatechange = function() {
                 $("td").css("font-weight", "bold");
                 $("td").css("color", "black");
             }
-            objetoRetornado.data
         } else {
-
+            alert(this.status);
         }
     }
 }
-xhttp.open("GET", "https://us-central1-rest-api-employees.cloudfunctions.net/api/v1/employees", true)
+xhttp.open("GET", "http://rest-api-employees.jmborges.site/api/v1/employees", true)
 xhttp.send();
 
 
@@ -63,17 +62,17 @@ $("#salvar").click(function() {
                 var nome = objetoRetornado.data.name;
                 alert("Empregado " + nome + " cadastrado com sucesso")
             } else {
-
+                alert(this.status);
             }
         }
     }
-    xhttp.open("POST", "https://us-central1-rest-api-employees.cloudfunctions.net/api/v1/create", true);
+    xhttp.open("POST", "http://rest-api-employees.jmborges.site/api/v1/create", true);
     xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.send(JSON.stringify(novoEmpregado));
 });
 
 
-$("#excluir").click(function() {
+$("#excluirBotao").click(function() {
     var xhttp = new XMLHttpRequest();
     var deletaEmpregado = {
         id: document.getElementById("excluirFuncionario").value,
@@ -83,11 +82,14 @@ $("#excluir").click(function() {
             if (this.status == 200) {
                 var objetoRetornado = JSON.parse(this.responseText);
                 var nome = objetoRetornado.data.name;
-                alert("Empregado " + nome + " removido com sucesso")
+                alert("Empregado " + nome + " removido com sucesso");
+            } else {
+                alert(this.status);
             }
+
         }
     }
-    xhttp.open("DELETE", "https://us-central1-rest-api-employees.cloudfunctions.net/api/v1/delete/2", true)
+    xhttp.open("DELETE", "http://rest-api-employees.jmborges.site/api/v1/delete/2", true);
     xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.send(JSON.stringify(deletaEmpregado));
 });
@@ -110,11 +112,14 @@ $("#editar").click(function() {
             if (this.status == 200) {
                 var objetoRetornado = JSON.parse(this.responseText);
                 var id = objetoRetornado.data.id;
-                alert("Empregado com número de id " + id + " modificado")
+                alert("Empregado com número de id " + id + " modificado");
+            } else {
+                alert(this.status);
             }
         }
+
     }
-    xhttp.open("PUT", "https://us-central1-rest-api-employees.cloudfunctions.net/api/v1/update/21", true)
+    xhttp.open("PUT", "	http://rest-api-employees.jmborges.site/api/v1/update/21", true);
     xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.send(JSON.stringify(editarEmpregado));
 });
